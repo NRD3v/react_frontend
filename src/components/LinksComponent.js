@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {fetchDoctors} from "../store/actions/doctors";
 import {highlightLink, selectCity, selectPractice} from "../store/actions/links";
+import {Col} from "reactstrap";
 
 class LinksComponent extends Component {
     constructor(props) {
@@ -19,8 +20,8 @@ class LinksComponent extends Component {
 
     render() {
         return (
-            <div>
-                <p>{this.props.city}</p>
+            <Col className={`mt5 col-${12 / Object.keys(this.props.links).length}`}>
+                <h6>{this.props.city}</h6>
                 <ul>
                     {this.props.links[this.props.city].map((practice) => {
                         let highlight = '';
@@ -28,7 +29,7 @@ class LinksComponent extends Component {
                             highlight = 'highlight'
                         }
                         return (
-                            <li key={this.props.city + practice} className={highlight}>
+                            <li key={this.props.city + practice} className={`small ${highlight}`}>
                                 <a href="#" onClick={() => this.onClick(this.props.city, practice)}>
                                     { practice }
                                 </a>
@@ -36,7 +37,7 @@ class LinksComponent extends Component {
                         )
                     })}
                 </ul>
-            </div>
+            </Col>
         )
     }
 }
@@ -48,9 +49,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {fetchDoctors, highlightLink, selectCity, selectPractice})(LinksComponent);
-
-const style = {
-  highlight: {
-      fontWeight: 'bold'
-  }
-};

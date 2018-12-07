@@ -13,6 +13,36 @@ code {
     monospace;
 }
 
+.br0 {
+  border-radius: 0;
+}
+.bt1 {
+  border-top: 1px solid #dbe0e0;
+}
+.grey {
+  color: #C6C6C6;
+}
+.maxh50 {
+  max-height: 50px;
+}
+.m0 {
+  margin: 0;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.p10 {
+  padding: 10px;
+}
 li.highlight {
   font-weight: bold;
 }

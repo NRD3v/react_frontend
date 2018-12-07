@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {fetchLinks} from "../store/actions/links";
 import {fetchDoctors, resetDoctors} from "../store/actions/doctors";
+import {Card, CardBody, Col, Row} from "reactstrap";
 
 class DoctorComponent extends Component {
     constructor(props) {
@@ -14,16 +15,28 @@ class DoctorComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h5>{this.props.doctor.name}</h5>
-                <h6>{this.props.doctor.city}</h6>
-                <ul>
-                    {this.props.doctor.practice.map((practice, index) => {
-                        return <span key={index}>{ (index ? ', ' : '') + practice}</span>
-                    })}
-                </ul>
-                <p>Prendre RDV</p>
-            </div>
+            <Card className={'col-6 p10'}>
+                <CardBody>
+                    <Row>
+                        <Col className={'col-4'}>
+                            <img src={require('../images/Photo.jpg')} className="imageRadius2" width="100" />
+                        </Col>
+                        <Col className={'col-8 card-text h-50 maxh50'}>
+                            <span>{this.props.doctor.name}</span>
+                            <br/>
+                            <span className={'grey'}>{this.props.doctor.city}</span>
+                            <br/>
+                            <span className={'small'}>
+                                {this.props.doctor.practice.map((practice, index) => {
+                                    return <span key={index}>{ (index ? ', ' : '') + practice}</span>
+                                })}
+                            </span>
+                            <br/>
+                            <span className={'small font-weight-bold text-primary'}>Prendre RDV</span>
+                        </Col>
+                    </Row>
+                </CardBody>
+            </Card>
         )
     }
 }

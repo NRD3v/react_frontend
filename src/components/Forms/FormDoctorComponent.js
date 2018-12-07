@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux";
 import {highlightLink, resetHighlightedLink, selectCity, selectPractice} from "../../store/actions/links"
 import {fetchDoctors, resetDoctors} from "../../store/actions/doctors"
+import {Button, Form} from "reactstrap";
 
 class FormDoctorComponent extends Component {
     constructor(props) {
@@ -54,23 +55,23 @@ class FormDoctorComponent extends Component {
         }
 
         return (
-            <div>
-                <form onSubmit={e => this.handleSubmit(e)}>
-                    <select onChange={e => this.handleChangeCity(e)} value={this.props.selectedCity || ''}>
-                        <option value="null">Choisir une ville</option>
-                        {Object.keys(this.props.links).map(city => {
-                            return <option value={city} key={city}>{city}</option>
-                        })}
-                    </select>
+            <Form onSubmit={e => this.handleSubmit(e)} className={'row offset-2 col-8 mt30 mb20'}>
+                <select onChange={e => this.handleChangeCity(e)} value={this.props.selectedCity || ''}
+                        className={'col-4 custom-select'}>
+                    <option value="null">Choisir une ville</option>
+                    {Object.keys(this.props.links).map(city => {
+                        return <option value={city} key={city}>{city}</option>
+                    })}
+                </select>
 
-                    <select onChange={e => this.handleChangePractice(e)} value={this.props.selectedPractice || ''}>
-                        <option value="null">Choisir une spécialité</option>
-                        {practicesOptions}
-                    </select>
+                <select onChange={e => this.handleChangePractice(e)} value={this.props.selectedPractice || ''}
+                        className={'col-4 custom-select'}>
+                    <option value="null">Choisir une spécialité</option>
+                    {practicesOptions}
+                </select>
 
-                    <button>ENVOYER</button>
-                </form>
-            </div>
+                <Button className={'btn-primary col-4'}>ENVOYER</Button>
+            </Form>
         )
     }
 }
